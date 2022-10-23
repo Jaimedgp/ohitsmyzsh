@@ -7,33 +7,26 @@ export LS_COLORS='di=01;38;5;141:ln=01;38;5;117:ex=01;38;5;82:fi=01;38;5;231'
 # -------------------------
 
 local venv='$(pyenv_venv_info)'
-#local pwd="%{%K{102}%F{231}%} %4~ %k%f"
 local pwd="%{%K{102}%F{231}%} %4~ %k%f"
 local is_ok="%(?:%F{082} • %f:%F{196} • %f)"
 
-local my_docker='$(docker_prompt_info)'
 local my_git='$(git_prompt_branch)'
 local my_timer='$(print_timer)'
 
-
-#MY_PY_PROMPT_PREFIX="%K{226}%F{069} "
 MY_PY_PROMPT_PREFIX="%K{#4B51FE}%F{#FDF85A} "
 MY_PY_PROMPT_SUFFIX="%k%f"
 
-#MY_CLOCK_PREFIX="%B%F{59}%K{075} "
 MY_CLOCK_PREFIX="%B%F{59}%K{#FFC489} "
 MY_CLOCK_SUFFIX="%b%f%k"
 
-#MY_ELAPSED_PROMPT_PREFIX="%K{141}%F{016}"
 MY_ELAPSED_PROMPT_PREFIX="%K{#DD96FF}%F{016}"
 MY_ELAPSED_PROMPT_SUFFIX=" %k%f"
 
-#MY_GIT_PROMPT_PREFIX="%K{059}"
 MY_GIT_PROMPT_PREFIX="%K{059}"
 MY_GIT_PROMPT_SUFFIX=" %k"
 
 PROMPT="${venv}${pwd}${is_ok}"
-RPROMPT="${my_timer}${my_docker}${my_git}"
+RPROMPT="${my_timer}${my_git}"
 
 
 # AUTOSUGGEST STYLE

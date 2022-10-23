@@ -10,7 +10,6 @@ local venv='$(pyenv_venv_info)'
 local pwd="%{%F{247}%}%4~ %f"
 local is_ok="%(?:%F{082}• %f:%F{196}• %f)"
 
-local my_docker='$(docker_prompt_info)'
 local my_git='$(git_prompt_branch)'
 local my_timer='$(print_timer)'
 
@@ -27,7 +26,7 @@ MY_GIT_PROMPT_PREFIX="%F{217} •"
 MY_GIT_PROMPT_SUFFIX="%f"
 
 PROMPT="${venv}${pwd}${is_ok}"
-RPROMPT="${my_timer}${my_docker}${my_git}"
+RPROMPT="${my_timer}${my_git}"
 
 
 # AUTOSUGGEST STYLE

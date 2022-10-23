@@ -10,7 +10,6 @@ local venv='$(pyenv_venv_info)'
 local pwd='$(print_pwd)'
 local is_ok="%(?:%F{082}• %f:%F{196}• %f)"
 
-local my_docker='$(docker_prompt_info)'
 local my_git='$(git_prompt_branch)'
 local my_timer='$(print_timer)'
 
@@ -20,7 +19,6 @@ PWD_SECOND_COLOR="#FFFFFF"
 PY_MAIN_COLOR="#4B51FE"
 PY_SECOND_COLOR="#FDF85A"
 
-#CLCK_MAIN_COLOR="#00AAFF"
 CLCK_MAIN_COLOR="#FFC489"
 CLCK_SECOND_COLOR="#4A4A4A"
 
@@ -33,7 +31,7 @@ MY_GIT_PROMPT_PREFIX="%F{217} •"
 MY_GIT_PROMPT_SUFFIX="%f"
 
 PROMPT="${venv}${pwd}${is_ok}"
-RPROMPT="${my_timer}${my_docker}${my_git}"
+RPROMPT="${my_timer}${my_git}"
 
 # AUTOSUGGEST STYLE
 # -------------------------
