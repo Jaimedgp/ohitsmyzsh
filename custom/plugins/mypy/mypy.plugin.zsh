@@ -77,7 +77,7 @@ function pyenv_venv_info() {
         fi
     elif [ -n "$(_pyenv_venv)" ]; then
         if [[ $RANDOM_THEME == "jaimedgpbubbles" ]]; then
-            echo "%F{${PY_MAIN_COLOR}%K{${PY_SECOND_COLOR}}\ue0b6%f%k%F{${PY_SECOND_COLOR}}%K{${PY_MAIN_COLOR}}%f%k%F{${PY_MAIN_COLOR}%K{${PY_SECOND_COLOR}}\ue0b4%f%k%F{${PY_MAIN_COLOR}} $(_pyenv_venv_bubble) %f"
+            echo "%F{${PY_MAIN_COLOR}%K{${PY_SECOND_COLOR}}\ue0b6%f%k%F{${PY_SECOND_COLOR}}%K{${PY_MAIN_COLOR}}%f%k%F{${PY_MAIN_COLOR}%K{${PY_SECOND_COLOR}}\ue0b4%f%k%F{${PY_MAIN_COLOR}} $(_pyenv_venv) %f"
         else
             echo "${MY_PY_PROMPT_PREFIX}  $(_pyenv_venv)${MY_PY_PROMPT_SUFFIX}"
         fi
