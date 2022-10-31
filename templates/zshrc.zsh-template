@@ -14,7 +14,7 @@ ZSH_THEME="random"
 # Setting this varible when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
-ZSH_THEME_RANDOM_CANDIDATES=( "jaimedgpfg" "jaimedgpbg" )
+ZSH_THEME_RANDOM_CANDIDATES=( "jaimedgpfg" "jaimedgpbg" "jaimedgpbubbles" )
 ZSH_THEME_RANDOM_QUIET=true
 
 # Uncomment the following line to use case-sensitive completion.
@@ -78,9 +78,11 @@ plugins=(
     mygit
     mytiming
     mypy
-    mydocker
+    mypwd
 
     fzf
+    pyenv
+    poetry
     zsh-syntax-highlighting
     zsh-autosuggestions
 )
@@ -134,8 +136,28 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+if [ -d "$HOME/.pyenv/bin" ]; then
+    export PATH="$HOME/.pyenv/bin:$PATH"
+    eval "$(pyenv init --path)"
+else
+    sudo apt-get install -y \
+        make build-essential libssl-dev zlib1g-dev \
+        libbz2-dev libreadline-dev libsqlite3-dev wget \
+        curl llvm libncurses5-dev libncursesw5-dev xz-utils \
+        tk-dev libffi-dev liblzma-dev python-openssl
+    curl https://pyenv.run | bash
 
-eval "$(pyenv init --path)"
+    export PATH="$HOME/.pyenv/bin:$PATH"
+    eval "$(pyenv init --path)"
+fi
+
+if [ -f "$HOME/.local/bin/poetry" ]; then
+    export PATH="$HOME/.local/bin/:$PATH"
+else
+    curl -sSL https://install.python-poetry.org | python3 -
+
+    export PATH="$HOME/.local/bin/:$PATH"
+fi
 
 # Start Tmux
 if [ -z "$TMUX" ]; then
