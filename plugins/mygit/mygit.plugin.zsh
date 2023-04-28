@@ -23,11 +23,7 @@ function git_prompt_branch() {
     || ref=$(__git_prompt_git rev-parse --short HEAD 2> /dev/null) \
     || return 0
 
-    if [[ $RANDOM_THEME == "jaimedgpbubbles" ]]; then
-        echo " %F{${GIT_MAIN_COLOR}%K{${GIT_SECOND_COLOR}}\ue0b6%f%k%F{${GIT_SECOND_COLOR}}%K{${GIT_MAIN_COLOR}}%f%k%F{${GIT_MAIN_COLOR}%K{${GIT_SECOND_COLOR}}\ue0b4%f%k%F{${GIT_MAIN_COLOR}} $(_git_prompt_info)%f"
-    else
-        echo "${MY_GIT_PROMPT_PREFIX}  $(_git_prompt_info)${MY_GIT_PROMPT_SUFFIX}"
-    fi
+    echo "${MY_GIT_PROMPT_PREFIX}$(_git_prompt_info)${MY_GIT_PROMPT_SUFFIX}"
 }
 
 

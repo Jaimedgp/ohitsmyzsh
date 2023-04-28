@@ -68,39 +68,23 @@ function _pyenv_venv() {
     pyenv version 2> /dev/null | awk '$1!="system" {print $1}'
 }
 
-function pyenv_venv_info() {
-    if [[ -n ${VIRTUAL_ENV} ]]; then
-        if [[ $RANDOM_THEME == "jaimedgpbubbles" ]]; then
-            echo "%F{${PY_MAIN_COLOR}%K{${PY_SECOND_COLOR}}\ue0b6%f%k%F{${PY_SECOND_COLOR}}%K{${PY_MAIN_COLOR}}%f%k%F{${PY_MAIN_COLOR}%K{${PY_SECOND_COLOR}}\ue0b4%f%k%F{${PY_MAIN_COLOR}} ${VIRTUAL_ENV:t:gs/%/%%} %f"
-        else
-            echo "${MY_PY_PROMPT_PREFIX} ${VIRTUAL_ENV:t:gs/%/%%} ${MY_PY_PROMPT_SUFFIX}"
-        fi
-    elif [ -n "$(_pyenv_venv)" ]; then
-        if [[ $RANDOM_THEME == "jaimedgpbubbles" ]]; then
-            echo "%F{${PY_MAIN_COLOR}%K{${PY_SECOND_COLOR}}\ue0b6%f%k%F{${PY_SECOND_COLOR}}%K{${PY_MAIN_COLOR}}%f%k%F{${PY_MAIN_COLOR}%K{${PY_SECOND_COLOR}}\ue0b4%f%k%F{${PY_MAIN_COLOR}} $(_pyenv_venv) %f"
-        else
-            echo "${MY_PY_PROMPT_PREFIX}  $(_pyenv_venv)${MY_PY_PROMPT_SUFFIX}"
-        fi
+
+function _conda_venv() {
+    local _path=$CONDA_PREFIX
+    if [[ -n $_path ]]; then
+        echo $(basename $_path) | awk '$1!="base" {print $1}'
+    else
+        echo $_path | awk '$1!="base" {print $1}'
     fi
 }
 
-function _conda_venv() {
-    $(basename $_path) |  awk '$1!="base" {print $1}'
-}
-
-function conda_venv_info() {
+function venv_info() {
     if [[ -n ${VIRTUAL_ENV} ]]; then
-        if [[ $RANDOM_THEME == "jaimedgpbubbles" ]]; then
-            echo "%F{${PY_MAIN_COLOR}%K{${PY_SECOND_COLOR}}\ue0b6%f%k%F{${PY_SECOND_COLOR}}%K{${PY_MAIN_COLOR}}%f%k%F{${PY_MAIN_COLOR}%K{${PY_SECOND_COLOR}}\ue0b4%f%k%F{${PY_MAIN_COLOR}} ${VIRTUAL_ENV:t:gs/%/%%} %f"
-        else
-            echo "${MY_PY_PROMPT_PREFIX} ${VIRTUAL_ENV:t:gs/%/%%} ${MY_PY_PROMPT_SUFFIX}"
-        fi
+        echo "${MY_PY_PROMPT_PREFIX}${VIRTUAL_ENV:t:gs/%/%%} ${MY_PY_PROMPT_SUFFIX}"
+    elif [ -n "$(_pyenv_venv)" ]; then
+        echo "${MY_PY_PROMPT_PREFIX}$(_pyenv_venv)${MY_PY_PROMPT_SUFFIX}"
     elif [ -n "$(_conda_venv)" ]; then
-        if [[ $RANDOM_THEME == "jaimedgpbubbles" ]]; then
-            echo "%F{${PY_MAIN_COLOR}%K{${PY_SECOND_COLOR}}\ue0b6%f%k%F{${PY_SECOND_COLOR}}%K{${PY_MAIN_COLOR}}%f%k%F{${PY_MAIN_COLOR}%K{${PY_SECOND_COLOR}}\ue0b4%f%k%F{${PY_MAIN_COLOR}} $(_conda_venv) %f"
-        else
-            echo "${MY_PY_PROMPT_PREFIX}  $(_conda_venv)${MY_PY_PROMPT_SUFFIX}"
-        fi
+        echo "${MY_PY_PROMPT_PREFIX}$(_conda_venv)${MY_PY_PROMPT_SUFFIX}"
     fi
 }
 
