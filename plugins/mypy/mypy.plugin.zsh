@@ -72,7 +72,7 @@ function _pyenv_venv() {
 function _conda_venv() {
     local _path=$CONDA_PREFIX
     if [[ -n $_path ]]; then
-        echo $(basename $_path) | awk '($1!="base" || $1!="mambaforge") {print $1}'
+        echo $(basename $_path) | awk '($1!="base" && $1!="mambaforge") {print $1}'
     else
         echo $_path | awk '$1!="base" {print $1}'
     fi
