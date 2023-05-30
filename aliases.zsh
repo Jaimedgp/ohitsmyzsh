@@ -5,8 +5,10 @@ alias l='ls -CF'
 
 alias ':q'="exit"
 
-alias vim="nvim"
-alias vimo="nvim -O"
+alias vim="nvim -O"
+alias vimv="nvim -O"
+alias vimh="nvim -o"
+alias vimt="nvim -p"
 
 alias ga="git add"
 alias gs="git status"
