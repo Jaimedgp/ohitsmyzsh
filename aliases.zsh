@@ -1,3 +1,5 @@
+alias 0='cd $HOME'
+
 alias la='ls -A'
 alias ll='ls -lF'
 alias lla='ls -AalF'
