@@ -1,3 +1,7 @@
+function print_pwd() {
+    echo "${PWD_PROMPT_PREFIX}%4~${PWD_PROMPT_SUFFIX}"
+}
+
 function _clock() {
     echo "%D{%H:%M}"
 }
