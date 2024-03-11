@@ -51,4 +51,4 @@ function print_isok(){
 
 
 preexec_functions=(print_clock)
-precmd_functions=(_calc_timer)
+precmd_functions+=(_calc_timer)
