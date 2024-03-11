@@ -5,7 +5,14 @@ source "$ZSH_CUSTOM/themes/colorscheme.zsh-theme"
 # #########################
 
 local pwd='$(print_pwd)'
-local is_ok="%(?:%F{082} • %f:%F{196} • %f)"
+# local is_ok="%(?:%F{082} • %f:%F{196} • %f)"
+#
+local is_ok='$(print_isok)'
+
+ISOK_OK="%F{${ISOK_MAIN_COLOR}}%K{${OK_COLOR}} "
+ISOK_NOT="%F{${ISOK_MAIN_COLOR}}%K{${NOTOK_COLOR}} "
+
+
 
 #PWD_PROMPT_PREFIX="%{%K{102}%F{231}%}  "
 #PWD_PROMPT_SUFFIX=" %f%k"
@@ -38,5 +45,5 @@ local my_git='$(git_prompt_branch)'
 MY_GIT_PROMPT_PREFIX="%K{${GIT_MAIN_COLOR}}%F{${GIT_SECOND_COLOR}}  "
 MY_GIT_PROMPT_SUFFIX=" %k"
 
-PROMPT="${venv}${pwd}${is_ok}"
+PROMPT="${is_ok}${venv}${pwd}"
 RPROMPT="${my_timer}${my_git}"

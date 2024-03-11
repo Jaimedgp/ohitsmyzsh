@@ -8,26 +8,26 @@ function _clock() {
 
 
 function print_clock() {
+    export TIMER=$(($(date +%s%0N)/1000000))
     _lineup=$'\e[1A'
     section=${MY_CLOCK_PREFIX}$(_clock)${MY_CLOCK_SUFFIX}
     print -P "%{${_lineup}%}$section%{${PS1}$1%}"
 
-    export timer=$(($(date +%s%0N)/1000000))
 }
 
 
 function _calc_timer() {
-    if [ "$timer" -gt 0 ]; then
+    if [ "$TIMER" -gt 0 ]; then
         now=$(($(date +%s%0N)/1000000))
 
-        if [ $(($now-$timer)) -gt 1000 ]; then
-            _elapsed=$((($now-$timer)/60000))"'"$((((($now-$timer)%60000))/1000))'"'
+        if [ $(($now-$TIMER)) -gt 1000 ]; then
+            _elapsed=$((($now-$TIMER)/60000))"'"$((((($now-$TIMER)%60000))/1000))'"'
         else
-            _elapsed=$(($now-$timer))"ms"
+            _elapsed=$(($now-$TIMER))"ms"
         fi
 
-        export timer=0
         export ELAPSED="$_elapsed"
+        export TIMER=0
     else
         export ELAPSED=""
     fi
@@ -36,18 +36,18 @@ function _calc_timer() {
 function print_timer() {
     if [[ "$ELAPSED" == "" ]]; then
         echo ""
+        echo "adios"
     else
         echo "${MY_ELAPSED_PROMPT_PREFIX}${ELAPSED}${MY_ELAPSED_PROMPT_SUFFIX}"
     fi
 
 }
 
-
-function print_pwd() {
-    echo "${PWD_PROMPT_PREFIX}%4~${PWD_PROMPT_SUFFIX}"
+function print_isok(){
+    echo "%(?:$ISOK_OK:$ISOK_NOT)"
 }
 
 
-preexec_functions+=(print_clock)
+preexec_functions=(print_clock)
 precmd_functions+=(_calc_timer)
 

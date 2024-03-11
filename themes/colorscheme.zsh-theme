@@ -9,6 +9,12 @@ export BUILDKIT_COLORS='run=221,150,255:error=252,166,166:cancel=166,252,170:war
 
 # PWD
 # -------------------------
+OK_COLOR="#A6FCAA"
+NOTOK_COLOR="#FCA6A6"
+ISOK_MAIN_COLOR="#4A4A4A"
+
+# PWD
+# -------------------------
 PWD_MAIN_COLOR="#787878"
 PWD_SECOND_COLOR="#FFFFFF"
 
@@ -26,7 +32,7 @@ PY_SECOND_COLOR="#FDF85A"
 
 # GIT
 # -------------------------
-GIT_MAIN_COLOR="#FF91FF"
+GIT_MAIN_COLOR="#CCFBF9"  # # FF91FF
 GIT_SECOND_COLOR="#4A4A4A"
 
 
