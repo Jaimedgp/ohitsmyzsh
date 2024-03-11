@@ -6,6 +6,7 @@ function _clock() {
     echo "%D{%H:%M}"
 }
 
+
 function print_clock() {
     _lineup=$'\e[1A'
     section=${MY_CLOCK_PREFIX}$(_clock)${MY_CLOCK_SUFFIX}
@@ -14,8 +15,6 @@ function print_clock() {
     export timer=$(($(date +%s%0N)/1000000))
 }
 
-#function _start_timer() {
-#}
 
 function _calc_timer() {
     if [ "$timer" -gt 0 ]; then
@@ -44,6 +43,11 @@ function print_timer() {
 }
 
 
-#preexec_functions+=(_start_timer)
+function print_pwd() {
+    echo "${PWD_PROMPT_PREFIX}%4~${PWD_PROMPT_SUFFIX}"
+}
+
+
 preexec_functions+=(print_clock)
 precmd_functions+=(_calc_timer)
+

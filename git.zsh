@@ -42,3 +42,4 @@ function git_tmux_branch() {
 
     echo "$(_git_prompt_info)"
 }
+
