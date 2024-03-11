@@ -26,5 +26,5 @@ MY_ELAPSED_PROMPT_SUFFIX="%f"
 MY_GIT_PROMPT_PREFIX="%F{${GIT_MAIN_COLOR}} •  "
 MY_GIT_PROMPT_SUFFIX="%f"
 
-PROMPT="${venv}${pwd}${is_ok}"
+PROMPT="${is_ok}${venv}${pwd}"
 RPROMPT="${my_timer}${my_git}"
