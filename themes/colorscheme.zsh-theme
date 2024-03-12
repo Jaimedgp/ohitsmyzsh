@@ -41,6 +41,11 @@ GIT_SECOND_COLOR="#4A4A4A"
 ELPS_MAIN_COLOR="#DD96FF"
 ELPS_SECOND_COLOR="#4A4A4A"
 
+# TIMER
+# -------------------------
+END_MAIN_COLOR="#A6FCAA"
+END_SECOND_COLOR="#4A4A4A"
+
 
 # HIGHLIGHT STYLE
 # #########################
