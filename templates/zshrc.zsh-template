@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="$HOME/.config/zsh/oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -64,7 +64,7 @@ ZSH_THEME="jaimedgpbubbles"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=$HOME/.ohitsmyzsh
+export ZSH_CUSTOM=$HOME/.config/zsh/ohitsmyzsh
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -87,7 +87,7 @@ plugins=(
     zsh-autosuggestions
 )
 
-if [ ! -f ~/.fzf.zsh ]; then
+if [ ! -f $HOME/.fzf.zsh ]; then
     # install FZF (say yes to each option during installation)
     echo "Installing fzf"
     git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -95,14 +95,14 @@ if [ ! -f ~/.fzf.zsh ]; then
 fi
 
 FZF_BASE="$HOME/.fzf"
-source ~/.fzf.zsh
+source $HOME~/.fzf.zsh
 
-if [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting ]; then
+if [ ! -d $HOME/.config/ohmyitszsh//plugins/zsh-syntax-highlighting ]; then
     echo "Installing zsh-syntax-highlighting"
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 fi
 
-if [ ! -d ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions ]; then
+if [ ! -d $HOME/.config/ohmyitszsh/plugins/zsh-autosuggestions ]; then
     echo "Installing zsh-autosuggestions"
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 fi
