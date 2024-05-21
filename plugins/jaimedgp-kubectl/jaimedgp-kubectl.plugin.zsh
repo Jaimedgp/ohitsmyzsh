@@ -66,6 +66,19 @@ function kl() {
     fi
 }
 
+function klf() {
+    pod=$(kubectl get pods | fzf | awk '{print $1}')
+    if [[ $pod != "" ]]; then
+        if [[ $pod != "NAME" ]]; then
+            kubectl logs $pod > /tmp/logs_$pod.txt
+        fi
+    fi
+
+    if [[ -f /tmp/logs_$pod.txt ]]; then
+        cat /tmp/logs_$pod.txt | fzf
+    fi
+}
+
 function kex() {
     pod=$(kubectl get pods | fzf | awk '{print $1}')
     if [[ $pod != "" ]]; then
