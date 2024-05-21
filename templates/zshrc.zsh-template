@@ -8,7 +8,7 @@ export ZSH="$HOME/.config/zsh/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="jaimedgpbubbles"
+ZSH_THEME="jaimedgpbubblesbg"
 
 # Set list of themes to pick from when loading at random
 # Setting this varible when ZSH_THEME=random will cause zsh to load
@@ -72,17 +72,16 @@ export ZSH_CUSTOM=$HOME/.config/zsh/ohitsmyzsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-#my-pyenv
-#my-elapsed
 plugins=(
-    mygit
-    mytiming
-    mypy
-    mypwd
+    jaimedgp-git
+    jaimedgp-neovim
+    jaimedgp-python
+    jaimedgp-kubectl
 
     fzf
     pyenv
     poetry
+
     zsh-syntax-highlighting
     zsh-autosuggestions
 )
@@ -95,19 +94,17 @@ if [ ! -f $HOME/.fzf.zsh ]; then
 fi
 
 FZF_BASE="$HOME/.fzf"
-source $HOME~/.fzf.zsh
+source $HOME.fzf.zsh
 
-if [ ! -d $HOME/.config/ohmyitszsh//plugins/zsh-syntax-highlighting ]; then
+if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]; then
     echo "Installing zsh-syntax-highlighting"
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 fi
 
-if [ ! -d $HOME/.config/ohmyitszsh/plugins/zsh-autosuggestions ]; then
+if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
     echo "Installing zsh-autosuggestions"
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 fi
-
-source $ZSH/oh-my-zsh.sh
 
 
 # User configuration
@@ -188,3 +185,5 @@ if [ -z "$TMUX" ]; then
 	tmux attach || tmux
 fi
 # <<< Tmux init <<<
+
+source $ZSH/oh-my-zsh.sh
