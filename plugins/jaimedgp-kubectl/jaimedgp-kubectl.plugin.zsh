@@ -40,3 +40,32 @@ alias kgpa='kubectl get pods --all-namespaces'
 
 alias kpf="kubectl port-forward"  # Port forwarding
 alias kcp='kubectl cp'            # File copy
+
+#---------------------------------------------------------------------------
+
+alias k3="sudo k3s kubectl"
+# Contexts Manage
+alias k3cuc='sudo k3s ubectl config use-context'
+alias k3ccc='sudo k3s ubectl config current-context'
+alias k3cgc='sudo k3s ubectl config get-contexts'
+
+
+# Namespaces management
+alias k3gn="sudo k3s kubectl get namespace"
+
+
+# Deployments management
+alias k3gd="sudo k3s kubectl get deployments"
+
+
+# Services management
+alias k3gs="sudo k3s kubectl get services"
+
+
+# Pods management.
+alias k3gp='sudo k3s kubectl get pods'
+alias k3gpa='sudo k3s kubectl get pods --all-namespaces'
+
+
+alias k3pf="sudo k3s ubectl port-forward"  # Port forwarding
+alias k3cp='sudo k3s ubectl cp'            # File copy
