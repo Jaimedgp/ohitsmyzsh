@@ -42,7 +42,7 @@ alias kpf="kubectl port-forward"  # Port forwarding
 alias kcp='kubectl cp'            # File copy
 
 function kc() {
-    context=$(kubectl config get-contexts | fzf | awk '{print $1}')
+    context=$(kubectl config get-contexts | fzf --height 40% --reverse | awk '{print $1}')
     if [[ $context == "*" ]]; then
         kubectl config current-context | awk '{print "You are currently using context: " $1}'
     else
@@ -58,7 +58,7 @@ function kc() {
 }
 
 function kl() {
-    pod=$(kubectl get pods | fzf | awk '{print $1}')
+    pod=$(kubectl get pods | fzf --height 40% --reverse | awk '{print $1}')
     if [[ $pod != "" ]]; then
         if [[ $pod != "NAME" ]]; then
             kubectl logs $pod
@@ -67,7 +67,7 @@ function kl() {
 }
 
 function klf() {
-    pod=$(kubectl get pods | fzf | awk '{print $1}')
+    pod=$(kubectl get pods | fzf --height 40% --reverse | awk '{print $1}')
     if [[ $pod != "" ]]; then
         if [[ $pod != "NAME" ]]; then
             kubectl logs $pod > /tmp/logs_$pod.txt
@@ -80,7 +80,7 @@ function klf() {
 }
 
 function kex() {
-    pod=$(kubectl get pods | fzf | awk '{print $1}')
+    pod=$(kubectl get pods | fzf --height 40% --reverse | awk '{print $1}')
     if [[ $pod != "" ]]; then
         if [[ $pod != "NAME" ]]; then
             kubectl exec -ti $pod -- /bin/bash
