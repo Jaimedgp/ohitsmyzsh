@@ -20,27 +20,6 @@ alias kcuc='kubectl config use-context'
 alias kccc='kubectl config current-context'
 alias kcgc='kubectl config get-contexts'
 
-
-# Namespaces management
-alias kgn="kubectl get namespace"
-
-
-# Deployments management
-alias kgd="kubectl get deployments"
-
-
-# Services management
-alias kgs="kubectl get services"
-
-
-# Pods management.
-alias kgp='kubectl get pods'
-alias kgpa='kubectl get pods --all-namespaces'
-
-
-alias kpf="kubectl port-forward"  # Port forwarding
-alias kcp='kubectl cp'            # File copy
-
 function kc() {
     context=$(kubectl config get-contexts | fzf --height 40% --reverse | awk '{print $1}')
     if [[ $context == "*" ]]; then
@@ -57,7 +36,52 @@ function kc() {
     fi
 }
 
-function kl() {
+
+# Namespaces management
+alias kgn="kubectl get namespace"
+
+
+# Deployments management
+alias kgd="kubectl get deployments"
+
+
+# Services management
+alias kgs="kubectl get services"
+
+
+# Pods management.
+alias kgp='kubectl get pods'
+alias kgpa='kubectl get pods --all-namespaces'
+alias kdp="kubectl delete pods -i"
+
+function kdpf() {
+    pod=$(kubectl get pods | fzf --height 40% --reverse | awk '{print $1}')
+    if [[ $pod != "" ]]; then
+        if [[ $pod != "NAME" ]]; then
+            kubectl delete pods -i $pod
+        fi
+    fi
+}
+
+
+# Jobs management
+alias kgj="kubectl get jobs"
+alias kdj="kubectl delete jobs -i"
+function kdjf() {
+    job=$(kubectl get jobs | fzf --height 40% --reverse | awk '{print $1}')
+    if [[ $job != "" ]]; then
+        if [[ $job != "NAME" ]]; then
+            kubectl delete jobs -i $job
+        fi
+    fi
+}
+
+
+alias kpf="kubectl port-forward"  # Port forwarding
+alias kcp='kubectl cp'            # File copy
+
+alias kl="kubectl logs"
+function klf() {
     pod=$(kubectl get pods | fzf --height 40% --reverse | awk '{print $1}')
     if [[ $pod != "" ]]; then
         if [[ $pod != "NAME" ]]; then
@@ -66,7 +90,7 @@ function kl() {
     fi
 }
 
-function klf() {
+function klft() {
     pod=$(kubectl get pods | fzf --height 40% --reverse | awk '{print $1}')
     if [[ $pod != "" ]]; then
         if [[ $pod != "NAME" ]]; then
@@ -92,9 +116,9 @@ function kex() {
 
 alias k3="sudo k3s kubectl"
 # Contexts Manage
-alias k3cuc='sudo k3s ubectl config use-context'
-alias k3ccc='sudo k3s ubectl config current-context'
-alias k3cgc='sudo k3s ubectl config get-contexts'
+alias k3cuc='sudo k3s kubectl config use-context'
+alias k3ccc='sudo k3s kubectl config current-context'
+alias k3cgc='sudo k3s kubectl config get-contexts'
 
 
 # Namespaces management
@@ -114,6 +138,6 @@ alias k3gp='sudo k3s kubectl get pods'
 alias k3gpa='sudo k3s kubectl get pods --all-namespaces'
 
 
-alias k3pf="sudo k3s ubectl port-forward"  # Port forwarding
-alias k3cp='sudo k3s ubectl cp'            # File copy
+alias k3pf="sudo k3s kubectl port-forward"  # Port forwarding
+alias k3cp='sudo k3s kubectl cp'            # File copy
 

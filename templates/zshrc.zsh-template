@@ -2,13 +2,13 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.config/zsh/.oh-my-zsh"
+export ZSH="/home/jaimedgp/.config/zsh/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="jaimedgpbubblesbg"
+ZSH_THEME="jaimedgpbubbles"
 
 # Set list of themes to pick from when loading at random
 # Setting this varible when ZSH_THEME=random will cause zsh to load
@@ -64,7 +64,8 @@ ZSH_THEME="jaimedgpbubblesbg"
 # HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
-export ZSH_CUSTOM=$HOME/.config/zsh/ohitsmyzsh
+export ZSH_CUSTOM=/home/jaimedgp/.config/zsh/ohitsmyzsh
+export XDG_CONFIG_HOME=/home/jaimedgp/.config/
 
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
@@ -86,104 +87,7 @@ plugins=(
     zsh-autosuggestions
 )
 
-if [ ! -f $HOME/.fzf.zsh ]; then
-    # install FZF (say yes to each option during installation)
-    echo "Installing fzf"
-    git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    ~/.fzf/install
-fi
-
-FZF_BASE="$HOME/.fzf"
-source $HOME.fzf.zsh
-
-if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting ]; then
-    echo "Installing zsh-syntax-highlighting"
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-fi
-
-if [ ! -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ]; then
-    echo "Installing zsh-autosuggestions"
-    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-fi
-
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# >>> Pyenv init >>>
-# if [ -d "$HOME/.pyenv/bin" ]; then
-#     export PATH="$HOME/.pyenv/bin:$PATH"
-#     eval "$(pyenv init --path)"
-# else
-#     sudo apt-get install -y \
-#         make build-essential libssl-dev zlib1g-dev \
-#         libbz2-dev libreadline-dev libsqlite3-dev wget \
-#         curl llvm libncurses5-dev libncursesw5-dev xz-utils \
-#         tk-dev libffi-dev liblzma-dev python-openssl
-#     curl https://pyenv.run | bash
-#
-#     export PATH="$HOME/.pyenv/bin:$PATH"
-#     eval "$(pyenv init --path)"
-# fi
-# <<< Pyenv init <<<
-
-# >>> Poetry init >>>
-# if [ -f "$HOME/.local/bin/poetry" ]; then
-#     export PATH="$HOME/.local/bin/:$PATH"
-# else
-#     curl -sSL https://install.python-poetry.org | python3 -
-#
-#     export PATH="$HOME/.local/bin/:$PATH"
-# fi
-# <<< Poetry init <<<
-
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/jaimedgp/mambaforge/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/jaimedgp/mambaforge/etc/profile.d/conda.sh" ]; then
-        . "/home/jaimedgp/mambaforge/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/jaimedgp/mambaforge/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-
-if [ -f "/home/jaimedgp/mambaforge/etc/profile.d/mamba.sh" ]; then
-    . "/home/jaimedgp/mambaforge/etc/profile.d/mamba.sh"
-fi
-# <<< conda initialize <<<
-
-# >>> Tmux init >>>
-if [ -z "$TMUX" ]; then
-	tmux attach || tmux
-fi
-# <<< Tmux init <<<
+FZF_BASE="/home/jaimedgp/.config/fzf"
+source $FZF_BASE/fzf.zsh
 
 source $ZSH/oh-my-zsh.sh
