@@ -1,5 +1,5 @@
 function mkenv() {
-    pythonversion="3.8.10"
+    pythonversion="3.12"
     name=${PWD##*/}
 
     while [[ $# -gt 0 ]]; do
