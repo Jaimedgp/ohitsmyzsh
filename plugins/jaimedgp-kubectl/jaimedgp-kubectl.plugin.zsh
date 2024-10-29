@@ -55,7 +55,7 @@ alias kgpa='kubectl get pods --all-namespaces'
 alias kdp="kubectl delete pods -i"
 
 function kdpf() {
-    pod=$(kubectl get pods | fzf --height 40% --reverse | awk '{print $1}')
+    pod=$(kubectl get pods | fzf -m --height 40% --reverse | awk '{print $1}')
     if [[ $pod != "" ]]; then
         if [[ $pod != "NAME" ]]; then
             kubectl delete pods -i $pod
@@ -68,7 +68,7 @@ function kdpf() {
 alias kgj="kubectl get jobs"
 alias kdj="kubectl delete jobs -i"
 function kdjf() {
-    job=$(kubectl get jobs | fzf --height 40% --reverse | awk '{print $1}')
+    job=$(kubectl get jobs | fzf -m --height 40% --reverse | awk '{print $1}')
     if [[ $job != "" ]]; then
         if [[ $job != "NAME" ]]; then
             kubectl delete jobs -i $job
@@ -104,10 +104,29 @@ function klft() {
 }
 
 function kex() {
+    term=/bin/bash
+    while [[ $# -gt 0 ]]; do
+        case "$1" in
+            --zsh)
+                term=/bin/zsh
+                shift
+                ;;
+            --bash)
+                term=/bin/bash
+                shift
+                ;;
+            *)
+                echo "Unknown option: $1"
+                echo "Usage: gaf [--all] [--new]"
+                return 1
+                ;;
+        esac
+    done
+
     pod=$(kubectl get pods | fzf --height 40% --reverse | awk '{print $1}')
     if [[ $pod != "" ]]; then
         if [[ $pod != "NAME" ]]; then
-            kubectl exec -ti $pod -- /bin/bash
+            kubectl exec -ti $pod -- $term
         fi
     fi
 }
