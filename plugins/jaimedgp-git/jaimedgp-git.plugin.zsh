@@ -7,6 +7,14 @@ alias gr="git restore"
 alias gchck="git checkout"
 alias gnb="git checkout -b"
 
+function gpf() {
+    branch=$(git branch | fzf --height 40% --reverse | awk '{print $1}')
+    if [[ $branch != "" ]]; then
+        if [[ $branch != "NAME" ]]; then
+            git push -u origin $branch
+        fi
+    fi
+}
 
 function gbf() {
     branch=$(git branch | fzf --height 40% --reverse | awk '{print $1}')
@@ -26,13 +34,13 @@ function gdf() {
 
 function grf() {
     cmd="git status --porcelain"
-    grep=" | grep '^ M'"
+    grep=" | grep '.[M]'"
     staged=0
 
     while [[ $# -gt 0 ]]; do
         case "$1" in
             --staged)
-                grep=" | grep '^M ' "
+                grep=" | grep '^M' "
                 staged=1
                 shift
                 ;;
@@ -63,13 +71,13 @@ function gaf() {
     cmd="git status --porcelain"
 
     if [[ $# -eq 0 ]]; then
-        cmd+=" | grep '^ M'"    # Loop through each argument
+        cmd+=" | grep '.[M]'"    # Loop through each argument
     fi
 
     while [[ $# -gt 0 ]]; do
         case "$1" in
             --all)
-                cmd+=" | grep -v '^M ' "
+                cmd+=" | grep -v '^M' "
                 shift
                 ;;
             --new)
