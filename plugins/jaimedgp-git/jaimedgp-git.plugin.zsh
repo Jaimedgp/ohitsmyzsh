@@ -7,6 +7,15 @@ alias gr="git restore"
 alias gchck="git checkout"
 alias gnb="git checkout -b"
 
+function gf() {
+    projects_folder="$HOME/projects/"
+    folder=$(find $projects_folder -type d -name ".git" -prune -exec dirname {} \; | sed "s|$projects_folder||" | fzf --height 40 --reverse)
+
+    if [[ $file != "" ]]; then
+        cd $projects_folder$folder
+    fi
+}
+
 function gpf() {
     branch=$(git branch | fzf --height 40% --reverse | awk '{print $1}')
     if [[ $branch != "" ]]; then
