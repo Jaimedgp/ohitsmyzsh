@@ -11,7 +11,8 @@ function gf() {
     projects_folder="$HOME/projects/"
     folder=$(find $projects_folder -type d -name ".git" -prune -exec dirname {} \; | sed "s|$projects_folder||" | fzf --height 40 --reverse)
 
-    if [[ $file != "" ]]; then
+    if [[ $folder != "" ]]; then
+        echo $projects_folder$folder
         cd $projects_folder$folder
     fi
 }
