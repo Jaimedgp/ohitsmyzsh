@@ -12,7 +12,6 @@ function gf() {
     folder=$(find $projects_folder -type d -name ".git" -prune -exec dirname {} \; | sed "s|$projects_folder||" | fzf --height 40 --reverse)
 
     if [[ $folder != "" ]]; then
-        echo $projects_folder$folder
         cd $projects_folder$folder
     fi
 }
@@ -21,7 +20,7 @@ function gpf() {
     branch=$(git branch | fzf --height 40% --reverse | awk '{print $1}')
     if [[ $branch != "" ]]; then
         if [[ $branch != "NAME" ]]; then
-            git push -u origin $branch
+            echo $branch | xargs git push -u origin
         fi
     fi
 }
@@ -30,7 +29,7 @@ function gbf() {
     branch=$(git branch | fzf --height 40% --reverse | awk '{print $1}')
     if [[ $branch != "" ]]; then
         if [[ $branch != "NAME" ]]; then
-            git checkout $branch
+            echo $branch | git checkout
         fi
     fi
 }
@@ -38,7 +37,8 @@ function gbf() {
 function gdf() {
     file=$(git status --porcelain | grep '^ M' | sed s/^...// | fzf -m --height 40% --reverse)
     if [[ $file != "" ]]; then
-        git diff $file
+        echo "git diff -- $file"
+        echo $file | tr '\n' ' ' | xargs git diff --
     fi
 }
 

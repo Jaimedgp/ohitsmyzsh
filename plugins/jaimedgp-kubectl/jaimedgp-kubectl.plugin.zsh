@@ -30,7 +30,7 @@ function kc() {
             kubectl config current-context | awk '{print "Back to the currently using context: " $1}'
         else
             if [[ $context != "" ]]; then
-                kubectl config use-context $context
+                echo $context | xargs kubectl config use-context
             fi
         fi
     fi
@@ -58,7 +58,7 @@ function kdpf() {
     pod=$(kubectl get pods | fzf -m --height 40% --reverse | awk '{print $1}')
     if [[ $pod != "" ]]; then
         if [[ $pod != "NAME" ]]; then
-            kubectl delete pods -i $pod
+            echo $pod | xargs kubectl delete pods -i
         fi
     fi
 }
@@ -71,7 +71,7 @@ function kdjf() {
     job=$(kubectl get jobs | fzf -m --height 40% --reverse | awk '{print $1}')
     if [[ $job != "" ]]; then
         if [[ $job != "NAME" ]]; then
-            kubectl delete jobs -i $job
+            echo $job | kubectl delete jobs -i
         fi
     fi
 }
@@ -85,7 +85,7 @@ function klf() {
     pod=$(kubectl get pods | fzf --height 40% --reverse | awk '{print $1}')
     if [[ $pod != "" ]]; then
         if [[ $pod != "NAME" ]]; then
-            kubectl logs $pod
+            echo $pod | kubectl logs
         fi
     fi
 }
