@@ -88,6 +88,6 @@ plugins=(
 )
 
 FZF_BASE="/home/jaimedgp/.config/fzf"
-source $FZF_BASE/fzf.zsh
+source <(fzf --zsh)
 
 source $ZSH/oh-my-zsh.sh
