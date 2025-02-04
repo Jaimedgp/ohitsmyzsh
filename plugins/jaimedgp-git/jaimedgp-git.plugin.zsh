@@ -29,7 +29,7 @@ function gbf() {
     branch=$(git branch | fzf --height 40% --reverse | awk '{print $1}')
     if [[ $branch != "" ]]; then
         if [[ $branch != "NAME" ]]; then
-            echo $branch | git checkout
+            git checkout $branch
         fi
     fi
 }
@@ -37,8 +37,8 @@ function gbf() {
 function gdf() {
     file=$(git status --porcelain | grep '^ M' | sed s/^...// | fzf -m --height 40% --reverse)
     if [[ $file != "" ]]; then
-        echo "git diff -- $file"
-        echo $file | tr '\n' ' ' | xargs git diff --
+        files=$(echo $file | tr '\n' ' ')
+        echo $files | xargs git diff --
     fi
 }
 
@@ -56,13 +56,13 @@ function grf() {
                 ;;
             *)
                 echo "Unknown option: $1"
-                echo "Usage: gaf [--all] [--new]"
+                echo "Usage: grf [--all] [--new]"
                 return 1
                 ;;
         esac
     done
     cmd+=$grep
-    cmd+=" | sed s/^...// | fzf -m --height 40% --reverse"
+    cmd+=" | sed s/^...// | fzf -m --height 40% --reverse | tr '\n' ' '"
 
     file=$(eval $cmd)
 
@@ -101,13 +101,13 @@ function gaf() {
                 ;;
         esac
     done
-    cmd+=" | sed s/^...// | fzf -m --height 40% --reverse"
+    cmd+=" | sed s/^...// | fzf -m --height 40% --reverse | tr '\n' ' '"
 
-    file=$(eval $cmd)
+    file=$(eval $cmd)  # | awk -F' -> ' '
 
     if [[ $file != "" ]]; then
         echo $file | xargs git add
         echo "Files added to Git:"
-        echo "$file" | tr '\n' '\n    - ' | awk '{print "    - " $0}'
+        echo "$file" | rev | sed 's/ //' | tr ' ' '\n    - ' | rev | awk '{print "    - " $0}'
     fi
 }

@@ -55,10 +55,11 @@ alias kgpa='kubectl get pods --all-namespaces'
 alias kdp="kubectl delete pods -i"
 
 function kdpf() {
-    pod=$(kubectl get pods | fzf -m --height 40% --reverse | awk '{print $1}')
+    pod=$(kubectl get pods | fzf -m --height 40% --reverse | awk '{print $1}' | tr '\n' ' ')
     if [[ $pod != "" ]]; then
         if [[ $pod != "NAME" ]]; then
-            echo $pod | xargs kubectl delete pods -i
+            # echo $pod
+            kubectl delete pod -i $(echo $pod)
         fi
     fi
 }
@@ -68,10 +69,10 @@ function kdpf() {
 alias kgj="kubectl get jobs"
 alias kdj="kubectl delete jobs -i"
 function kdjf() {
-    job=$(kubectl get jobs | fzf -m --height 40% --reverse | awk '{print $1}')
+    job=$(kubectl get jobs | fzf -m --height 40% --reverse | awk '{print $1}' | tr '\n' ' ')
     if [[ $job != "" ]]; then
         if [[ $job != "NAME" ]]; then
-            echo $job | kubectl delete jobs -i
+            kubectl delete jobs -i $(echo $job)
         fi
     fi
 }
@@ -85,7 +86,7 @@ function klf() {
     pod=$(kubectl get pods | fzf --height 40% --reverse | awk '{print $1}')
     if [[ $pod != "" ]]; then
         if [[ $pod != "NAME" ]]; then
-            echo $pod | kubectl logs
+            kubectl logs $pod
         fi
     fi
 }
