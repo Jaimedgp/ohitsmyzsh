@@ -39,7 +39,7 @@ function drun() {
     done
 
     if [[ -n "$images" ]]; then
-        $(echo $command $entrypoint $images $args)
+        $(echo $command $entrypoint $args $images)
     else
         echo "No image selected."
     fi
@@ -77,8 +77,8 @@ function drmif() {
     done
 
     if [[ -n "$image_ids" ]]; then
-        echo "docker rmi -f $image_ids "
-        # echo $image_ids | xargs docker rmi -f
+        # echo "docker rmi -f $image_ids "
+        echo $image_ids | xargs docker rmi -f
     else
         echo "No image IDs found."
     fi
