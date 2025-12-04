@@ -3,6 +3,17 @@ alias d=docker
 alias dps="docker ps -a"
 alias di="docker images | sed '1d' | sort"
 
+function divef() {
+    command="dive"
+    images=$(docker images | sed '1d' | sort | fzf --height 40% --reverse | awk '{print $1":"$2}')
+
+    if [[ -n "$images" ]]; then
+        $(echo $command $images)
+    else
+        echo "No image selected."
+    fi
+
+}
 
 function drun() {
     command="docker run -it"
