@@ -1,11 +1,11 @@
 # This command is used a LOT both below and in daily life
 alias d=docker
 alias dps="docker ps -a"
-alias di="docker images | sed '1d' | sort"
+alias di="docker images --format table | sed '1d' | sort"
 
 function divef() {
     command="dive"
-    images=$(docker images | sed '1d' | sort | fzf --height 40% --reverse | awk '{print $1":"$2}')
+    images=$(docker images --format table | sed '1d' | sort | fzf --height 40% --reverse | awk '{print $1":"$2}')
 
     if [[ -n "$images" ]]; then
         $(echo $command $images)
@@ -19,7 +19,7 @@ function drun() {
     command="docker run -it"
     entrypoint="--entrypoint=/bin/bash"
     args=""
-    images=$(docker images | sed '1d' | sort | fzf --height 40% --reverse | awk '{print $1":"$2}')
+    images=$(docker images --format table | sed '1d' | sort | fzf --height 40% --reverse | awk '{print $1":"$2}')
 
     while [[ $# -gt 0 ]]; do
         case "$1" in
@@ -59,7 +59,7 @@ function drun() {
 
 
 function drmif() {
-    images=$(docker images | sed '1d' | sort | fzf -m --height 40% --reverse)
+    images=$(docker images --format table | sed '1d' | sort | fzf -m --height 40% --reverse)
 
     if [[ -z "$images" ]]; then
         echo "No image selected."

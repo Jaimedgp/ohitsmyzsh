@@ -1,0 +1,1 @@
+alias antonio='docker run -ti --entrypoint="/bin/bash" --gpus all -v /home/jaimedgp/projects/deep-meteo/workflow/configs/:/tmp/configs/ -v /predictia-nas2/Data/phd/project/perfect-prog/data/:/shared/data/ antonio:latest'

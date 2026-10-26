@@ -9,6 +9,7 @@ alias l='eza --icons=always --color=always --no-permissions --no-time --no-user 
 alias la='eza --icons=always --color=always --no-permissions --no-time --no-user --no-filesize --grid --width 150 --group-directories-first --all'
 alias ll='eza --icons=always --color=always --long --no-filesize --group-directories-first'
 alias lla='eza --icons=always --color=always --long --no-filesize --all --group-directories-first'
+alias lls='eza --icons=always --color=always --long --group-directories-first'
 alias llas='eza --icons=always --color=always --long --all --group-directories-first'
 
 function lc() {
